@@ -3,6 +3,9 @@ custom.el
 # Compiled
 *.elc
 
+# Repos
+elpa/*
+
 
 # Packaging
 .cask
