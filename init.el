@@ -37,7 +37,7 @@
   'yaml-mode
   'ido
   'projectile
-  'moe-theme
+  'jbeans-theme
   'evil
   'magit)
 
@@ -130,9 +130,9 @@
   :config
   (global-git-gutter+-mode))
 
-(use-package moe-theme
+(use-package jbeans-theme
   :config
-  (load-theme 'moe-dark t))
+  (load-theme 'jbeans t))
 
 (use-package highlight-indent-guides
   :init
@@ -151,8 +151,10 @@
 
 ;; Highlight the current line the cursor is on
 (use-package hl-line
-   :config
-   (global-hl-line-mode +1))
+  :init
+  (set-face-background hl-line-face "gray13")
+  :config
+  (global-hl-line-mode +1))
 
 (use-package rainbow-delimiters
   :ensure t
