@@ -188,6 +188,9 @@
 ;; Insert-tab on newline
 (setq indent-line-function 'insert-tab)
 
+;; Always follow symlinks
+(setq vc-follow-symlinks t)
+
 ;; Syntax highlighting
 (global-font-lock-mode t)
 
