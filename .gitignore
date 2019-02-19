@@ -1,3 +1,5 @@
+transient/*
+vimish-fold/*
 custom.el
 *.eld
 # Compiled

@@ -13,33 +13,37 @@
 
 ;; Make sure to have downloaded archive description.
 (or (file-exists-p package-user-dir)
-  (package-refresh-contents))
+    (package-refresh-contents))
 
 (ensure-package-installed
-  'telephone-line
-  'company
-  'dumb-jump
-  'company-jedi
-  'jedi
-  'use-package
-  'helm
-  'helm-projectile
-  'helm-gtags
-  'eclim
-  'fish-mode
-  'auto-complete
-  'ranger
-  'ansi-color
-  'highlight-indent-guides
-  'fill-column-indicator
-  'whitespace
-  'git-gutter+
-  'yaml-mode
-  'ido
-  'projectile
-  'jbeans-theme
-  'evil
-  'magit)
+ 'telephone-line
+ 'company
+ 'dumb-jump
+ 'company-jedi
+ 'jedi
+ 'use-package
+ 'helm
+ 'helm-projectile
+ 'helm-gtags
+ 'eclim
+ 'fish-mode
+ 'auto-complete
+ 'ranger
+ 'ansi-color
+ 'highlight-indent-guides
+ 'fill-column-indicator
+ 'whitespace
+ 'git-gutter+
+ 'yaml-mode
+ 'ido
+ 'projectile
+ 'aggressive-indent
+ 'jbeans-theme
+ 'evil-vimish-fold
+ 'vimish-fold
+ 'evil
+ 'magit)
+
 
 (use-package telephone-line
   :config
@@ -59,8 +63,8 @@
     (setq company-dabbrev-downcase nil)))
 
 (use-package dumb-jump
-    :config
-    (dumb-jump-mode))
+  :config
+  (dumb-jump-mode))
 
 (global-set-key (kbd "C-c g") 'dumb-jump-go)
 
@@ -69,11 +73,11 @@
   :init
   :config
   (use-package company-jedi
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook
-            (lambda () (add-to-list 'company-backends 'company-jedi)))
-  (setq company-jedi-python-bin "python")))
+    :ensure t
+    :init
+    (add-hook 'python-mode-hook
+              (lambda () (add-to-list 'company-backends 'company-jedi)))
+    (setq company-jedi-python-bin "python")))
 
 (use-package fill-column-indicator
   :init
@@ -119,12 +123,19 @@
   (setq evil-want-C-u-scroll t)
   :config
   (evil-mode)
-  :bind (:map evil-normal-state-map
-         ("M-." . nil)))
+  :bind (:map evil-normal-state-map ("M-." . nil)))
 
 ;; For whatever reason, :hook causes insert to trigger globally.
 ;; Use evil's insert state for git commit messages.
 (add-hook 'git-commit-mode-hook 'evil-insert-state)
+
+(use-package vimish-fold
+  :config
+  (vimish-fold-global-mode 1))
+
+(use-package evil-vimish-fold
+  :config
+  (evil-vimish-fold-mode 1))
 
 (use-package git-gutter+
   :config
@@ -133,6 +144,11 @@
 (use-package jbeans-theme
   :config
   (load-theme 'jbeans t))
+
+(use-package aggressive-indent
+  :ensure t
+  :hook ((prog-mode . aggressive-indent-mode)
+         (text-mode . aggressive-indent-mode)))
 
 (use-package highlight-indent-guides
   :init
@@ -144,10 +160,10 @@
          (text-mode . highlight-indent-guides-mode)))
 
 (use-package paren
-    :init
-    (setq show-paren-delay 0)
-    :config
-    (show-paren-mode +1))
+  :init
+  (setq show-paren-delay 0)
+  :config
+  (show-paren-mode +1))
 
 ;; Highlight the current line the cursor is on
 (use-package hl-line
@@ -162,12 +178,12 @@
          (text-mode . rainbow-delimiters-mode)))
 
 (use-package whitespace
-    :init
-    (setq prelude-whitespace nil)
-    ;; Highlight trailing whitespace
-    (setq whitespace-style '(face empty tabs trailing))
-    :config
-    (global-whitespace-mode t))
+  :init
+  (setq prelude-whitespace nil)
+  ;; Highlight trailing whitespace
+  (setq whitespace-style '(face empty tabs trailing))
+  :config
+  (global-whitespace-mode t))
 
 ;; Line numbers
 (global-linum-mode t)
