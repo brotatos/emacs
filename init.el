@@ -16,6 +16,7 @@
     (package-refresh-contents))
 
 (ensure-package-installed
+ 'markdown-mode
  'telephone-line
  'company
  'dumb-jump
@@ -44,6 +45,15 @@
  'evil
  'magit)
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init
+  (setq markdown-command "multimarkdown")
+  (setq markdown-command "/usr/local/bin/pandoc"))
 
 (use-package telephone-line
   :config
@@ -225,3 +235,13 @@
   (c-set-offset (quote innamespace) 0 nil))
 
 (add-hook 'c++-mode-hook 'foouser-c++-indent-setup)
+
+;; Line break for text modes.
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; Line break for comments in source code.
+(defun comment-auto-fill()
+  (setq-local comment-auto-fill-only-comments t)
+  (auto-fill-mode 1))
+
+(add-hook 'prog-mode-hook 'comment-auto-fill)
