@@ -137,7 +137,7 @@
 
 ;; For whatever reason, :hook causes insert to trigger globally.
 ;; Use evil's insert state for git commit messages.
-(add-hook 'git-commit-mode-hook 'evil-insert-state)
+(add-hook 'git-commit-mode-hook 'evil-normal-state)
 
 (use-package vimish-fold
   :config
