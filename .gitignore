@@ -17,3 +17,6 @@ elpa/*
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Projectile
+projectile.cache
