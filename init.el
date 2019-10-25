@@ -16,6 +16,7 @@
     (package-refresh-contents))
 
 (ensure-package-installed
+ 'project-explorer
  'doom-modeline
  'elpy
  'smart-tab
@@ -46,6 +47,12 @@
  'vimish-fold
  'evil
  'magit)
+
+(use-package project-explorer
+  :ensure t
+  :bind
+  ("C-c C-j" . project-explorer-toggle)
+  ("C-c j" . project-explorer-helm))
 
 (use-package doom-modeline
   :ensure t
@@ -273,3 +280,15 @@
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
 
 (setq org-log-done 'time)
+;; hide welcome screen
+(setq inhibit-splash-screen t)
+;; hide toolbar
+(tool-bar-mode -1)
+;; hide scrollbar
+(toggle-scroll-bar -1)
+
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(global-set-key (kbd "C-c l") 'hs-show-block)
+(global-set-key (kbd "C-c h") 'hs-hide-block)
+
+(set-default-font "Menlo-14")
