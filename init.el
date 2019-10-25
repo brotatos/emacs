@@ -16,7 +16,9 @@
     (package-refresh-contents))
 
 (ensure-package-installed
+ 'doom-modeline
  'elpy
+ 'smart-tab
  'markdown-mode
  'telephone-line
  'company
@@ -39,17 +41,28 @@
  'yaml-mode
  'ido
  'projectile
- 'aggressive-indent
  'jbeans-theme
  'evil-vimish-fold
  'vimish-fold
  'evil
  'magit)
 
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
 (use-package elpy
   :ensure t
   :init
   (elpy-enable))
+
+(use-package smart-tab
+  :ensure t
+  :defer t
+  :init
+  (setq-default indent-tabs-mode nil)
+  :config
+  (global-smart-tab-mode 1))
 
 (use-package markdown-mode
   :ensure t
@@ -60,10 +73,6 @@
   :init
   (setq markdown-command "multimarkdown")
   (setq markdown-command "/usr/local/bin/pandoc"))
-
-(use-package telephone-line
-  :config
-  (telephone-line-mode))
 
 (use-package company
   :ensure t
@@ -160,11 +169,6 @@
 (use-package jbeans-theme
   :config
   (load-theme 'jbeans t))
-
-(use-package aggressive-indent
-  :ensure t
-  :hook ((prog-mode . aggressive-indent-mode)
-         (text-mode . aggressive-indent-mode)))
 
 (use-package highlight-indent-guides
   :init
