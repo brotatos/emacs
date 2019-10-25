@@ -16,6 +16,7 @@
     (package-refresh-contents))
 
 (ensure-package-installed
+ 'elpy
  'markdown-mode
  'telephone-line
  'company
@@ -44,6 +45,11 @@
  'vimish-fold
  'evil
  'magit)
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
 
 (use-package markdown-mode
   :ensure t
@@ -92,7 +98,7 @@
 (use-package fill-column-indicator
   :init
   (setq fci-rule-width 80)
-  (setq fci-rule-color "red")
+  (setq fci-rule-color "blue")
   :hook ((after-change-major-mode . fci-mode)))
 
 (use-package eclim
@@ -245,3 +251,13 @@
   (auto-fill-mode 1))
 
 (add-hook 'prog-mode-hook 'comment-auto-fill)
+
+;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences
+(defun display-ansi-colors ()
+  (interactive)
+  (format-decode-buffer 'ansi-colors))
+
+;; Decode ANSI color escape sequences for .log files
+(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
+(setq org-log-done 'time)
