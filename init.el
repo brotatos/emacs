@@ -286,6 +286,8 @@
 (tool-bar-mode -1)
 ;; hide scrollbar
 (toggle-scroll-bar -1)
+;; hide menu bar
+(menu-bar-mode -1)
 
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (global-set-key (kbd "C-c l") 'hs-show-block)
