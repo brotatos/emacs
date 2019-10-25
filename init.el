@@ -146,6 +146,14 @@
   (setq evil-split-window-below t)
   (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
+
+  (setq evil-emacs-state-cursor '("red" box))
+  (setq evil-normal-state-cursor '("white" box))
+  (setq evil-visual-state-cursor '("orange" box))
+  (setq evil-insert-state-cursor '("white" bar))
+  (setq evil-replace-state-cursor '("red" bar))
+  (setq evil-operator-state-cursor '("red" hollow))
+
   :config
   (evil-mode)
   :bind (:map evil-normal-state-map ("M-." . nil)))
