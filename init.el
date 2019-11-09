@@ -16,6 +16,8 @@
     (package-refresh-contents))
 
 (ensure-package-installed
+ 'hl-todo
+ 'exec-path-from-shell
  'project-explorer
  'doom-modeline
  'elpy
@@ -35,7 +37,6 @@
  'auto-complete
  'ranger
  'ansi-color
- 'highlight-indent-guides
  'fill-column-indicator
  'whitespace
  'git-gutter+
@@ -47,6 +48,14 @@
  'vimish-fold
  'evil
  'magit)
+
+(use-package hl-todo
+    :init
+    (global-hl-todo-mode))
+
+(use-package exec-path-from-shell
+  :init
+  (exec-path-from-shell-initialize))
 
 (use-package project-explorer
   :ensure t
@@ -185,18 +194,7 @@
   :config
   (load-theme 'jbeans t))
 
-(use-package highlight-indent-guides
-  :init
-  (setq highlight-indentation-mode t)
-  (setq highlight-indent-guides-method 'character)
-  :config
-  (highlight-indent-guides-mode 1)
-  :hook ((prog-mode . highlight-indent-guides-mode)
-         (text-mode . highlight-indent-guides-mode)))
-
 (use-package paren
-  :init
-  (setq show-paren-delay 0)
   :config
   (show-paren-mode +1))
 
@@ -282,15 +280,27 @@
 (setq org-log-done 'time)
 ;; hide welcome screen
 (setq inhibit-splash-screen t)
-;; hide toolbar
-(tool-bar-mode -1)
-;; hide scrollbar
-(toggle-scroll-bar -1)
-;; hide menu bar
-(menu-bar-mode -1)
 
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (global-set-key (kbd "C-c l") 'hs-show-block)
 (global-set-key (kbd "C-c h") 'hs-hide-block)
 
-(set-default-font "Menlo-14")
+
+(defun my-frame-config (&optional frame)
+  (with-selected-frame (or frame (selected-frame))
+    (set-default-font "Menlo-14")
+    ;; hide toolbar
+    (tool-bar-mode -1)
+    ;; hide scrollbar
+    (toggle-scroll-bar -1)
+    ;; hide menu bar
+    (menu-bar-mode -1)
+    (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
+  )
+)
+
+(add-hook 'after-make-frame-functions 'my-frame-config)
+(add-hook 'after-init-hook 'my-frame-config)
+
+(global-visual-line-mode 1)
+(toggle-word-wrap)
