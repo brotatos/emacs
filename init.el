@@ -70,17 +70,6 @@
   (progn
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
 
-(use-package flx-ido
-  :ensure t
-  :defer t
-  :config
-  (ido-mode 1)
-  (ido-everywhre 1)
-  (flx-ido-mode 1)
-  (setq ido-enable-flex-matching t)
-  ;; Disable ido faces to see flx highlights.
-  (setq ido-use-faces nil))
-
 (use-package smartparens
   :ensure t
   :config
@@ -108,6 +97,7 @@
 
 (use-package elpy
   :ensure t
+  :after jedi
   :init
   (setq elpy-rpc-backend "jedi")
   (elpy-enable))
@@ -168,13 +158,6 @@
   (setq fci-rule-color "blue")
   :hook ((after-change-major-mode . fci-mode)))
 
-(use-package eclim
-  :ensure t
-  :init
-  (setq eclimd-autostart t)
-  :config
-  (global-eclim-mode))
-
 (use-package projectile
   :ensure t
   :init
@@ -190,18 +173,6 @@
          ("C-x C-f" . helm-projectile-find-file))
   :config
   (helm-mode 1))
-
-(use-package helm-gtags
-  :ensure t
-  :init
-  (setq helm-gtags-ignore-case t)
-  (setq helm-gtags-auto-update t)
-  (setq helm-gtags-use-input-at-curose t)
-  (setq helm-gtags-opulse-at-cursor t)
-  (setq helm-gtags-prefix-key "\C-cg")
-  (setq helm-gtags-suggested-key-mapping t)
-  :config
-  (helm-gtags-mode))
 
 (use-package evil
   :ensure t
@@ -330,9 +301,11 @@
 ;; hide welcome screen
 (setq inhibit-splash-screen t)
 
-(add-hook 'prog-mode-hook #'hs-minor-mode)
 (global-set-key (kbd "C-c l") 'hs-show-block)
 (global-set-key (kbd "C-c h") 'hs-hide-block)
+(global-set-key (kbd "C-c a") 'hs-hide-all)
+(global-set-key (kbd "C-c s") 'hs-show-all)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 
 (defun my-frame-config (&optional frame)
