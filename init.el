@@ -2,58 +2,97 @@
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-(load "~/.emacs.d/helpers.el")
 
-(setq package-enable-at-startup nil)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 
 ;; Make sure to have downloaded archive description.
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-(ensure-package-installed
- 'hl-todo
- 'exec-path-from-shell
- 'project-explorer
- 'doom-modeline
- 'elpy
- 'smart-tab
- 'markdown-mode
- 'telephone-line
- 'company
- 'dumb-jump
- 'company-jedi
- 'jedi
- 'use-package
- 'helm
- 'helm-projectile
- 'helm-gtags
- 'eclim
- 'fish-mode
- 'auto-complete
- 'ranger
- 'ansi-color
- 'fill-column-indicator
- 'whitespace
- 'git-gutter+
- 'yaml-mode
- 'ido
- 'projectile
- 'jbeans-theme
- 'evil-vimish-fold
- 'vimish-fold
- 'evil
- 'magit)
+(eval-when-compile (require 'use-package))
+
+(use-package diminish
+  :ensure t)
+
+(use-package bind-key
+  :ensure t)
+
+(use-package evil-leader
+    :ensure t
+    :after evil-magit
+    :config
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key "gs" 'magit-status)
+    (global-evil-leader-mode))
+
+(use-package evil-org
+  :ensure t
+  :hook (org-mode-hook evil-org-mode))
+
+(use-package evil-magit
+  :ensure t
+  :after evil)
+
+(use-package mode-icons
+  :ensure t
+  :init
+  (mode-icons-mode))
+
+(use-package diff-hl
+  :ensure t
+  :init
+  (diff-hl-margin-mode)
+  :config
+  (global-diff-hl-mode)
+  :hook
+  (dired-mode-hook diff-hl-dired-mode))
+
+(use-package git-messenger
+  :ensure t
+  :bind
+  ("C-c M" . git-messenger:popup-message)
+  :config
+  (setq git-messenger:show-detail t)
+  (setq git-messenger:use-magit-popup t))
+
+(use-package toc-org
+  :ensure t
+  :hook (org-mode toc-org-mode))
+
+(use-package org-bullets
+  :ensure t
+  :diminish t
+  :config
+  (progn
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+
+(use-package flx-ido
+  :ensure t
+  :defer t
+  :config
+  (ido-mode 1)
+  (ido-everywhre 1)
+  (flx-ido-mode 1)
+  (setq ido-enable-flex-matching t)
+  ;; Disable ido faces to see flx highlights.
+  (setq ido-use-faces nil))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (smartparens-global-mode 1))
 
 (use-package hl-todo
-    :init
-    (global-hl-todo-mode))
+  :ensure t
+  :init
+  (global-hl-todo-mode))
 
 (use-package exec-path-from-shell
+  :ensure t
   :init
   (exec-path-from-shell-initialize))
 
@@ -70,6 +109,7 @@
 (use-package elpy
   :ensure t
   :init
+  (setq elpy-rpc-backend "jedi")
   (elpy-enable))
 
 (use-package smart-tab
@@ -104,6 +144,7 @@
     (setq company-dabbrev-downcase nil)))
 
 (use-package dumb-jump
+  :ensure t
   :config
   (dumb-jump-mode))
 
@@ -121,24 +162,29 @@
     (setq company-jedi-python-bin "python")))
 
 (use-package fill-column-indicator
+  :ensure t
   :init
   (setq fci-rule-width 80)
   (setq fci-rule-color "blue")
   :hook ((after-change-major-mode . fci-mode)))
 
 (use-package eclim
+  :ensure t
   :init
   (setq eclimd-autostart t)
   :config
   (global-eclim-mode))
 
 (use-package projectile
+  :ensure t
+  :init
   :config
   (projectile-mode +1)
   :bind (("s-p" . projectile-command-map)
          ("C-c p" . projectile-command-map)))
 
 (use-package helm
+  :ensure t
   :bind (("M-x" . helm-M-x)
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-projectile-find-file))
@@ -146,6 +192,7 @@
   (helm-mode 1))
 
 (use-package helm-gtags
+  :ensure t
   :init
   (setq helm-gtags-ignore-case t)
   (setq helm-gtags-auto-update t)
@@ -157,6 +204,7 @@
   (helm-gtags-mode))
 
 (use-package evil
+  :ensure t
   :init
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
@@ -169,7 +217,6 @@
   (setq evil-insert-state-cursor '("white" bar))
   (setq evil-replace-state-cursor '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
-
   :config
   (evil-mode)
   :bind (:map evil-normal-state-map ("M-." . nil)))
@@ -179,27 +226,28 @@
 (add-hook 'git-commit-mode-hook 'evil-normal-state)
 
 (use-package vimish-fold
+  :ensure t
   :config
   (vimish-fold-global-mode 1))
 
 (use-package evil-vimish-fold
+  :ensure t
   :config
   (evil-vimish-fold-mode 1))
 
-(use-package git-gutter+
-  :config
-  (global-git-gutter+-mode))
-
 (use-package jbeans-theme
+  :ensure t
   :config
   (load-theme 'jbeans t))
 
 (use-package paren
+  :ensure t
   :config
   (show-paren-mode +1))
 
 ;; Highlight the current line the cursor is on
 (use-package hl-line
+  :ensure t
   :init
   (set-face-background hl-line-face "gray13")
   :config
@@ -211,6 +259,7 @@
          (text-mode . rainbow-delimiters-mode)))
 
 (use-package whitespace
+  :ensure t
   :init
   (setq prelude-whitespace nil)
   ;; Highlight trailing whitespace
