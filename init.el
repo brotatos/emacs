@@ -27,6 +27,7 @@
     :config
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key "gs" 'magit-status)
+    (evil-leader/set-key "gb" 'magit-blame)
     (global-evil-leader-mode))
 
 (use-package evil-org
