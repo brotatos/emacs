@@ -67,9 +67,7 @@
 (use-package org-bullets
   :ensure t
   :diminish t
-  :config
-  (progn
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+  :hook (org-mode-hook . (lambda () (org-bullets-mode 1))))
 
 (use-package smartparens
   :ensure t
@@ -151,13 +149,6 @@
     (add-hook 'python-mode-hook
               (lambda () (add-to-list 'company-backends 'company-jedi)))
     (setq company-jedi-python-bin "python")))
-
-(use-package fill-column-indicator
-  :ensure t
-  :init
-  (setq fci-rule-width 80)
-  (setq fci-rule-color "blue")
-  :hook ((after-change-major-mode . fci-mode)))
 
 (use-package projectile
   :ensure t
