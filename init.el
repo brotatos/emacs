@@ -22,13 +22,13 @@
   :ensure t)
 
 (use-package evil-leader
-    :ensure t
-    :after evil-magit
-    :config
-    (evil-leader/set-leader "<SPC>")
-    (evil-leader/set-key "gs" 'magit-status)
-    (evil-leader/set-key "gb" 'magit-blame)
-    (global-evil-leader-mode))
+  :ensure t
+  :after evil-magit
+  :config
+  (evil-leader/set-leader "<SPC>")
+  (evil-leader/set-key "gs" 'magit-status)
+  (evil-leader/set-key "gb" 'magit-blame)
+  (global-evil-leader-mode))
 
 (use-package evil-org
   :ensure t
@@ -235,7 +235,7 @@
   :init
   (setq prelude-whitespace nil)
   ;; Highlight trailing whitespace
-  (setq whitespace-style '(face empty tabs trailing))
+  (setq whitespace-style '(face trailing lines-tails empty indentation::space tab-mark))
   :config
   (global-whitespace-mode t))
 
