@@ -318,3 +318,5 @@
 
 (global-visual-line-mode 1)
 (toggle-word-wrap)
+
+(display-time-mode)
