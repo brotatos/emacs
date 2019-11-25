@@ -198,10 +198,10 @@
   :config
   (evil-vimish-fold-mode 1))
 
-(use-package jbeans-theme
+(use-package sexy-monochrome-theme
   :ensure t
   :config
-  (load-theme 'jbeans t))
+  (load-theme 'sexy-monochrome t))
 
 (use-package paren
   :ensure t
