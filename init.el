@@ -243,8 +243,9 @@
   :ensure t
   :init
   (setq prelude-whitespace nil)
+  (setq whitespace-line-column 80)
   ;; Highlight trailing whitespace
-  (setq whitespace-style '(face trailing lines-tails empty indentation::space tab-mark))
+  (setq whitespace-style '(face trailing lines-tail empty indentation::space tab-mark))
   :config
   (global-whitespace-mode t))
 
