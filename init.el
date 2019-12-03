@@ -15,11 +15,25 @@
 
 (eval-when-compile (require 'use-package))
 
-(use-package diminish
-  :ensure t)
+(use-package diminish :ensure t)
 
-(use-package bind-key
-  :ensure t)
+(use-package bind-key :ensure t)
+
+(use-package flycheck-pos-tip :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :commands global-flycheck-mode
+  :init (global-flycheck-mode)
+  :config (progn
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (setq flycheck-standard-error-navigation nil)
+     ;; flycheck errors on a tooltip (doesnt work on console)
+    (when (display-graphic-p (selected-frame))
+      (eval-after-load 'flycheck
+        '(custom-set-variables
+        '(flycheck-display-errors-function
+          #'flycheck-pos-tip-error-messages))))))
 
 (use-package ivy
   :defer t
@@ -276,6 +290,7 @@
 
 ;; Word wrap
 (global-visual-line-mode t)
+(toggle-word-wrap)
 
 ;; Delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -335,7 +350,5 @@
 (add-hook 'after-make-frame-functions 'my-frame-config)
 (add-hook 'after-init-hook 'my-frame-config)
 
-(global-visual-line-mode 1)
-(toggle-word-wrap)
-
+;; Display time in the modeline.
 (display-time-mode)
