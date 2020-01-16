@@ -17,6 +17,25 @@
 
 (use-package diminish :ensure t)
 
+(use-package highlight-indent-guides
+  :ensure t
+  :hook ((prog-mode . highlight-indent-guides-mode))
+  :config
+  (setq highlight-indent-guides-method 'character)
+  (setq highlight-indent-guides-character ?\ǀ)
+  (setq highlight-indent-guides-responsive 'top)
+  ;; https://github.com/DarthFennec/highlight-indent-guides/issues/40#issuecomment-451553492
+  (defadvice ivy-cleanup-string (after my-ivy-cleanup-hig activate)
+    (let ((pos 0) (next 0) (limit (length str)) (prop 'highlight-indent-guides-prop))
+      (while (and pos next)
+        (setq next (text-property-not-all pos limit prop nil str))
+        (when next
+          (setq pos (text-property-any next limit prop nil str))
+          (remove-text-properties next pos '(display nil face nil) str)))))
+   :init
+   (highlight-indent-guides-mode)
+   (highlight-indent-guides-auto-set-faces))
+
 (use-package bind-key :ensure t)
 
 (use-package flycheck-pos-tip :ensure t)
@@ -118,6 +137,8 @@
 
 (use-package project-explorer
   :ensure t
+  :init
+  (setq projectile-indexing-method 'alien)
   :bind
   ("C-c C-j" . project-explorer-toggle)
   ("C-c j" . project-explorer-helm))
@@ -186,7 +207,11 @@
   :ensure t
   :init
   :config
+  (setq projectile-enable-caching t)
+  (setq projectile-globally-ignored-directories
+        (append '("*__pycache__/" "*build/") projectile-globally-ignored-directories))
   (projectile-mode +1)
+
   :bind (("s-p" . projectile-command-map)
          ("C-c p" . projectile-command-map)))
 
@@ -230,10 +255,10 @@
   :config
   (evil-vimish-fold-mode 1))
 
-(use-package sexy-monochrome-theme
+(use-package jbeans-theme
   :ensure t
   :config
-  (load-theme 'sexy-monochrome t))
+  (load-theme 'jbeans t))
 
 (use-package paren
   :ensure t
@@ -276,7 +301,7 @@
       `((".*" , (expand-file-name "~/.emacs-backups/"))))
 
 ;; 4 spaces is one tab
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 ;; Insert spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 ;; Insert-tab on newline
