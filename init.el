@@ -120,11 +120,6 @@
   :diminish t
   :hook (org-mode-hook . (lambda () (org-bullets-mode 1))))
 
-(use-package smartparens
-  :ensure t
-  :config
-  (smartparens-global-mode 1))
-
 (use-package hl-todo
   :ensure t
   :init
