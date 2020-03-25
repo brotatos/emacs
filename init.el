@@ -363,7 +363,6 @@
     (toggle-scroll-bar -1)
     ;; hide menu bar
     (menu-bar-mode -1)
-    (set-frame-parameter (selected-frame) 'alpha '(95 . 95))
   )
 )
 
