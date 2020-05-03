@@ -212,6 +212,8 @@
 
 (use-package helm
   :ensure t
+  :demand t
+  :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-projectile-find-file))
@@ -258,11 +260,13 @@
 (use-package paren
   :ensure t
   :config
+  (setq show-paren-delay 0.005)
   (show-paren-mode +1))
 
 ;; Highlight the current line the cursor is on
 (use-package hl-line
   :ensure t
+  :demand t
   :init
   (set-face-background hl-line-face "gray13")
   :config
@@ -371,3 +375,9 @@
 
 ;; Display time in the modeline.
 (display-time-mode)
+
+;; Don't use ls --dired on Mac OS X.
+(when (string= system-type "darwin")
+  (setq dired-use-ls-dired nil))
+
+(setq-default c-basic-offset 2)
