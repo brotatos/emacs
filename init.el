@@ -221,10 +221,8 @@
 ;; Highlight the current line the cursor is on
 (use-package hl-line
   :ensure t
-  :demand t
-  :init
-  (set-face-background hl-line-face "gray13")
   :config
+  (set-face-background hl-line-face "gray13")
   (global-hl-line-mode +1))
 
 (use-package rainbow-delimiters
