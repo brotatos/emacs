@@ -6,7 +6,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (package-initialize)
 
 ;; Make sure to have downloaded archive description.
