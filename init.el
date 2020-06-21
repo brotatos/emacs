@@ -37,22 +37,6 @@
 
 (use-package bind-key :ensure t)
 
-(use-package flycheck-pos-tip :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :commands global-flycheck-mode
-  :init (global-flycheck-mode)
-  :config (progn
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (setq flycheck-standard-error-navigation nil)
-     ;; flycheck errors on a tooltip (doesnt work on console)
-    (when (display-graphic-p (selected-frame))
-      (eval-after-load 'flycheck
-        '(custom-set-variables
-        '(flycheck-display-errors-function
-          #'flycheck-pos-tip-error-messages))))))
-
 (use-package ivy
   :defer t
   :ensure t
@@ -141,13 +125,6 @@
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
-(use-package elpy
-  :ensure t
-  :after jedi
-  :init
-  (setq elpy-rpc-backend "jedi")
-  (elpy-enable))
-
 (use-package smart-tab
   :ensure t
   :defer t
@@ -185,17 +162,6 @@
   (dumb-jump-mode))
 
 (global-set-key (kbd "C-c g") 'dumb-jump-go)
-
-(use-package jedi
-  :ensure t
-  :init
-  :config
-  (use-package company-jedi
-    :ensure t
-    :init
-    (add-hook 'python-mode-hook
-              (lambda () (add-to-list 'company-backends 'company-jedi)))
-    (setq company-jedi-python-bin "python")))
 
 (use-package projectile
   :ensure t
@@ -240,16 +206,6 @@
 ;; For whatever reason, :hook causes insert to trigger globally.
 ;; Use evil's insert state for git commit messages.
 (add-hook 'git-commit-mode-hook 'evil-normal-state)
-
-(use-package vimish-fold
-  :ensure t
-  :config
-  (vimish-fold-global-mode 1))
-
-(use-package evil-vimish-fold
-  :ensure t
-  :config
-  (evil-vimish-fold-mode 1))
 
 (use-package jbeans-theme
   :ensure t
