@@ -1,13 +1,9 @@
-(require 'package)
-
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
-(package-initialize)
-
-;; Make sure to have downloaded archive description.
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+  (package-refresh-contents))
 
 (eval-when-compile (require 'use-package))
 
@@ -22,7 +18,9 @@
 (load (expand-file-name "mac.el" user-emacs-directory))
 (load (expand-file-name "markdown.el" user-emacs-directory))
 (load (expand-file-name "org.el" user-emacs-directory))
+(load (expand-file-name "project-management.el" user-emacs-directory))
 (load (expand-file-name "shell.el" user-emacs-directory))
-(load (expand-file-name "themes.el" user-emacs-directory))
 
-(load (expand-file-name "custom.el" user-emacs-directory))
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
