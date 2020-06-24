@@ -13,6 +13,7 @@
   (setq evil-replace-state-cursor '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
   :config
+  (add-hook 'git-commit-mode-hook 'evil-normal-state)
   (evil-mode)
   :bind (:map evil-normal-state-map ("M-." . nil)))
 
@@ -32,7 +33,3 @@
 (use-package evil-magit
   :ensure t
   :after evil)
-
-;; For whatever reason, :hook causes insert to trigger globally.
-;; Use evil's insert state for git commit messages.
-(add-hook 'git-commit-mode-hook 'evil-normal-state)
