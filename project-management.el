@@ -3,8 +3,8 @@
   :init
   (setq projectile-indexing-method 'alien)
   :bind
-  ("C-c C-j" . project-explorer-toggle)
-  ("C-c j" . project-explorer-helm))
+  ("C-c Q" . project-explorer-toggle)
+  ("C-c q" . project-explorer-helm))
 
 (use-package projectile
   :ensure t
