@@ -1,16 +1,16 @@
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(require 'package)
+(package-initialize)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+(when (not package-archive-contents)
   (package-refresh-contents))
 
 (eval-when-compile (require 'use-package))
 
-(load (expand-file-name "core.el" user-emacs-directory))
 (load (expand-file-name "c.el" user-emacs-directory))
-(load (expand-file-name "completion.el" user-emacs-directory))
 (load (expand-file-name "core.el" user-emacs-directory))
+(load (expand-file-name "completion.el" user-emacs-directory))
 (load (expand-file-name "editor.el" user-emacs-directory))
 (load (expand-file-name "evil.el" user-emacs-directory))
 (load (expand-file-name "git.el" user-emacs-directory))
