@@ -3,9 +3,10 @@
 
 ;; Use separate directory for backups.
 (setq backup-directory-alist
-      `(("." . ,(expand-file-name "~/.emacs-backups/"))))
+      `(("." . ,(expand-file-name "~/.emacs.d/backups/"))))
 (setq auto-save-file-name-transforms
-      `((".*" , (expand-file-name "~/.emacs-backups/"))))
+      `((".*" , (expand-file-name "~/.emacs.d/backups/" t))))
+
 
 ;; 2 spaces is one tab
 (setq-default tab-width 2)
