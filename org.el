@@ -7,7 +7,6 @@
 ;; https://orgmode.org/manual/HTML-preamble-and-postamble.html
 ;; disable author + date + validate link at end of HTML exports
 (setq org-html-postamble nil)
-(setq org-publish-use-timestamps-flag nil)
 
 (setq org-publish-project-alist
       '(("noir"
