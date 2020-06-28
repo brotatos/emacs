@@ -1,5 +1,17 @@
+;;te Show (row, col)
+(setq column-number-mode t)
+
+;; 2 spaces is one tab
+(setq-default tab-width 2)
+
+;; Insert spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 ;; hide welcome screen
 (setq inhibit-splash-screen t)
+
+;; Line numbers
+(global-linum-mode t)
 
 ;; Don't show top menu bar
 (menu-bar-mode -1)
