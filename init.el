@@ -1,9 +1,15 @@
 (require 'package)
-(package-initialize)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 
-(when (not package-archive-contents)
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+;; Make sure to have downloaded archive description.
+(or (file-exists-p package-user-dir)
   (package-refresh-contents))
 
 (eval-when-compile (require 'use-package))
