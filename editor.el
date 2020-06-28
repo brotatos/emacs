@@ -57,7 +57,10 @@
   (setq prelude-whitespace nil)
   (setq whitespace-line-column 80)
   ;; Highlight trailing whitespace
-  (setq whitespace-style '(face trailing lines-tail empty indentation::space tab-mark))
+  (setq whitespace-style
+        ;; There's a bug in empty where the face doesn't go away after
+        ;; typing below the newline.
+        '(face trailing lines-tail indentation::space tab-mark)) ;empty))
   :config
   (global-whitespace-mode t))
 
