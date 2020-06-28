@@ -1,6 +1,5 @@
 (defun my-frame-config (&optional frame)
   (with-selected-frame (or frame (selected-frame))
-    (set-default-font "Menlo-14")
     ;; hide toolbar
     (tool-bar-mode -1)
     ;; hide scrollbar
