@@ -32,7 +32,6 @@
 (use-package hl-line
   :ensure t
   :config
-  (set-face-background hl-line-face "gray13")
   (global-hl-line-mode +1))
 
 (use-package mode-icons
