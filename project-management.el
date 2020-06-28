@@ -21,8 +21,6 @@
   :ensure t
   :demand t
   :diminish helm-mode
-  :bind (("M-x" . helm-M-x)
-         ("C-x r b" . helm-filtered-bookmarks)
-         ("C-x C-f" . helm-projectile-find-file))
+  :bind ("M-x" . helm-M-x)
   :config
   (helm-mode 1))
