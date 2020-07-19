@@ -32,6 +32,13 @@
         auto-indent-delete-backward-char t
         auto-indent-fix-org-move-beginning-of-line t
         auto-indent-fix-org-yank t)
+
+  ;; Mobile Org
+  ;; Location of org files on your local system
+  (setq org-directory "~/noir")
+  ;; Where new notes will be stored
+  (setq org-mobile-inbox-for-pull "~/noir/flagged.org")
+  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
   ;; https://blog.aaronbieber.com/2016/03/05/playing-tag-in-org-mode.html#comment-4976528210
   (defun air--org-swap-tags (tags)
     "Replace any tags on the current headline with TAGS.
