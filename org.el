@@ -3,7 +3,17 @@
   :config
   (add-hook 'org-mode-hook 'org-bullets-mode))
 
+(use-package ox-twbs :ensure t)
 
+(use-package org-journal
+  :ensure t
+  :defer t
+  :config
+  (setq org-journal-dir "~/noir/journal/log"
+        org-journal-file-format "%Y-%m-%d.org"
+        org-journal-date-format "%A, %d %B %Y"
+        org-journal-file-type 'daily
+        org-journal-enable-cache t))
 
 (with-eval-after-load 'org
   (setq org-agenda-files (directory-files-recursively "~/noir" ".*\.org"))
