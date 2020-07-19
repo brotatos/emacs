@@ -24,6 +24,7 @@
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key "gs" 'magit-status)
   (evil-leader/set-key "gb" 'magit-blame)
+  (evil-leader/set-key "t" 'air-org-set-tags)
   (global-evil-leader-mode))
 
 (use-package evil-org
