@@ -29,3 +29,12 @@
 (use-package diminish :ensure t)
 
 (use-package bind-key :ensure t)
+
+(use-package auto-indent-global-mode
+  :config
+  (auto-indent-global-mode))
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1))

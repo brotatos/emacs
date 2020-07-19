@@ -24,3 +24,12 @@
          :recursive t
          :publishing-function org-publish-attachment
          )))
+
+(with-eval-after-load 'org
+
+  (setq auto-indent-start-org-indent t
+        auto-indent-fix-org-return t
+        auto-indent-delete-backward-char t
+        auto-indent-fix-org-move-beginning-of-line t
+        auto-indent-fix-org-yank t)
+  )
