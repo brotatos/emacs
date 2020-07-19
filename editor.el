@@ -51,7 +51,6 @@
          (text-mode . rainbow-delimiters-mode)))
 
 (use-package whitespace
-  :ensure t
   :init
   (setq prelude-whitespace nil)
   (setq whitespace-line-column 80)
@@ -61,7 +60,7 @@
         ;; typing below the newline.
         '(face trailing lines-tail indentation::space tab-mark)) ;empty))
   :config
-  (global-whitespace-mode t))
+  (global-whitespace-mode 1))
 
 (use-package doom-themes
   :ensure t
