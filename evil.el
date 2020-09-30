@@ -25,6 +25,9 @@
   (evil-leader/set-key "gs" 'magit-status)
   (evil-leader/set-key "gb" 'magit-blame)
   (evil-leader/set-key "t" 'air-org-set-tags)
+  (evil-leader/set-key "p" 'org-publish-all)
+  (evil-leader/set-key "q" 'project-explorer-helm)
+  (evil-leader/set-key "Q" 'project-explorer-toggle)
   (global-evil-leader-mode))
 
 (use-package evil-org
