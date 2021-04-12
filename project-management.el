@@ -2,6 +2,9 @@
   :ensure t
   :init
   (setq projectile-indexing-method 'alien)
+  (setq pe/omit-gitignore t)
+  (setq pe/cache-enabled t)
+  ;(setq pe/omit-regex "extern")
   :bind
   ("C-c Q" . project-explorer-toggle)
   ("C-c q" . project-explorer-helm))
@@ -15,7 +18,7 @@
         (append '("*__pycache__/" "*build/") projectile-globally-ignored-directories))
   (projectile-mode +1)
   :bind (("s-p" . projectile-command-map)
-       ("C-c p" . projectile-command-map)))
+         ("C-c p" . projectile-command-map)))
 
 (use-package helm
   :ensure t

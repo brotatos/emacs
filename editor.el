@@ -62,10 +62,10 @@
   :config
   (global-whitespace-mode 1))
 
-(use-package doom-themes
+(use-package jbeans-theme
   :ensure t
   :config
-  (load-theme 'doom-oceanic-next t))
+  (load-theme 'jbeans t))
 
 ;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences
 (defun display-ansi-colors ()
