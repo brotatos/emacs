@@ -5,6 +5,7 @@
   (setq evil-split-window-below t)
   (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
+  (setq evil-want-keybinding nil)
 
   (setq evil-emacs-state-cursor '("red" box))
   (setq evil-normal-state-cursor '("white" box))
@@ -19,21 +20,24 @@
 
 (use-package evil-leader
   :ensure t
-  :after evil-magit
+  :after evil-collection
   :config
   (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key "gs" 'magit-status)
-  (evil-leader/set-key "gb" 'magit-blame)
-  (evil-leader/set-key "t" 'air-org-set-tags)
-  (evil-leader/set-key "p" 'org-publish-all)
-  (evil-leader/set-key "q" 'project-explorer-helm)
-  (evil-leader/set-key "Q" 'project-explorer-toggle)
+  (evil-leader/set-key
+   "gs" 'magit-status
+   "gb" 'magit-blame
+   "t" 'air-org-set-tags
+   "p" 'org-publish-all
+   ;"q" 'project-explorer-helm
+   "Q" 'neotree-toggle)
   (global-evil-leader-mode))
 
 (use-package evil-org
   :ensure t
   :hook (org-mode-hook evil-org-mode))
 
-(use-package evil-magit
+(use-package evil-collection
   :ensure t
-  :after evil)
+  :after evil
+  :config
+  (evil-collection-init))

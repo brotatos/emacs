@@ -1,13 +1,8 @@
-(use-package project-explorer
+(use-package neotree
   :ensure t
   :init
-  (setq projectile-indexing-method 'alien)
-  (setq pe/omit-gitignore t)
-  (setq pe/cache-enabled t)
-  ;(setq pe/omit-regex "extern")
-  :bind
-  ("C-c Q" . project-explorer-toggle)
-  ("C-c q" . project-explorer-helm))
+  (setq neo-smart-open t
+        neo-modern-sidebar t))
 
 (use-package projectile
   :ensure t

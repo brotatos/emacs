@@ -1,3 +1,6 @@
+(use-package magit
+  :ensure t)
+
 (use-package git-messenger
   :ensure t
   :bind
