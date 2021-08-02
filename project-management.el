@@ -2,7 +2,9 @@
   :ensure t
   :init
   (setq neo-smart-open t
-        neo-modern-sidebar t))
+        neo-modern-sidebar t)
+  :config
+  (setq neo-theme 'arrow))
 
 (use-package projectile
   :ensure t
