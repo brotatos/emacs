@@ -28,7 +28,7 @@
    "gb" 'magit-blame
    "t" 'air-org-set-tags
    "p" 'org-publish-all
-   ;"q" 'project-explorer-helm
+   "q" 'projectile-find-file
    "Q" 'neotree-toggle)
   (global-evil-leader-mode))
 
