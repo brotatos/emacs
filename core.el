@@ -1,3 +1,6 @@
+; Show keystrokes as they are typed in
+(setq echo-keystrokes .1)
+
 ;; Use separate directory for backups.
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "~/.emacs.d/backups/"))))
