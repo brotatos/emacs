@@ -1,3 +1,16 @@
+(use-package ggtags
+  :ensure t
+  :after evil
+  :config
+  (setq ggtags-update-on-save t)
+  (global-set-key (kbd "C-c ??") 'ggtags-show-definition)
+  (ggtags-mode 1)
+  (evil-make-overriding-map ggtags-mode-map 'normal)
+  (add-hook 'ggtags-mode-hook #'evil-normalize-keymaps)
+  (evil-define-key 'normal ggtags-mode-map
+    (kbd "C-]") 'ggtags-find-tag-dwim)
+    (kbd "C-t") 'ggtags-prev-mark)
+
 (use-package neotree
   :ensure t
   :init
