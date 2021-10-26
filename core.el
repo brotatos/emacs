@@ -1,6 +1,9 @@
 ; Show keystrokes as they are typed in
 (setq echo-keystrokes .1)
 
+;; Make X primary selection work with emacs.
+(setq x-select-enable-clipboard t)
+
 ;; Use separate directory for backups.
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "~/.emacs.d/backups/"))))
