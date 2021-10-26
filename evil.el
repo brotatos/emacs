@@ -16,7 +16,9 @@
   :config
   (add-hook 'git-commit-mode-hook 'evil-normal-state)
   (evil-mode)
-  :bind (:map evil-normal-state-map ("M-." . nil)))
+  :bind
+  (:map evil-normal-state-map ("M-." . nil))
+  (:map evil-normal-state-map ("C-]" . nil)))
 
 (use-package evil-leader
   :ensure t
@@ -29,7 +31,8 @@
    "t" 'air-org-set-tags
    "p" 'org-publish-all
    "q" 'projectile-find-file
-   "Q" 'neotree-toggle)
+   "Q" 'neotree-toggle
+   "]" 'ggtags-find-tag-dwim)
   (global-evil-leader-mode))
 
 (use-package evil-org
