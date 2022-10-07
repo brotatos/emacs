@@ -1,5 +1,5 @@
-(setq-default c-basic-offset 2)
-(setq-default cpp-basic-offset 2)
+(setq-default c-basic-offset 4)
+(setq-default cpp-basic-offset 4)
 (setq c-default-style "k&r")
 
 
@@ -8,7 +8,7 @@
              ;'("stroustrup"
              '("k&r"
                (indent-tabs-mode . nil)        ; use spaces rather than tabs
-               (c-basic-offset . 2)            ; indent by four spaces
+               (c-basic-offset . 4)            ; indent by four spaces
                (c-offsets-alist . ((inline-open . 0)  ; custom indentation rules
                                    (brace-list-open . 0)
                                    (statement-case-open . +)))))

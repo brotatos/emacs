@@ -44,3 +44,6 @@
 (use-package diminish :ensure t)
 
 (use-package bind-key :ensure t)
+
+;; Save place in file after closing it.
+(save-place-mode 1)

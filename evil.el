@@ -1,4 +1,5 @@
 (use-package evil
+  :after lsp-mode
   :ensure t
   :init
   (setq evil-vsplit-window-right t)
@@ -13,12 +14,15 @@
   (setq evil-insert-state-cursor '("white" bar))
   (setq evil-replace-state-cursor '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
+  :hook
+  (window-configuration-change . evil-normalize-keymaps)
   :config
   (add-hook 'git-commit-mode-hook 'evil-normal-state)
-  (evil-mode)
-  :bind
-  (:map evil-normal-state-map ("M-." . nil))
-  (:map evil-normal-state-map ("C-]" . nil)))
+  (add-hook 'after-init-hook 'evil-normalize-keymaps)
+  (evil-mode))
+  ;:bind
+  ;(:map evil-normal-state-map ("M-." . nil))
+  ;(:map evil-normal-state-map ("C-]" . nil)))
 
 (use-package evil-leader
   :ensure t
@@ -31,8 +35,9 @@
    "t" 'air-org-set-tags
    "p" 'org-publish-all
    "q" 'projectile-find-file
-   "Q" 'neotree-toggle
-   "]" 'ggtags-find-tag-dwim)
+   "Q" 'treemacs
+   "]" 'ggtags-find-tag-dwim
+   "l" lsp-command-map)
   (global-evil-leader-mode))
 
 (use-package evil-org

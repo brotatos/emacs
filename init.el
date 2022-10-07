@@ -26,6 +26,8 @@
 (load (expand-file-name "org.el" user-emacs-directory))
 (load (expand-file-name "project-management.el" user-emacs-directory))
 (load (expand-file-name "shell.el" user-emacs-directory))
+(load (expand-file-name "dbc.el" user-emacs-directory))
+(load (expand-file-name "lsp-config.el" user-emacs-directory))
 
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

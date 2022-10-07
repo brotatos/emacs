@@ -50,10 +50,19 @@
   :hook ((prog-mode . rainbow-delimiters-mode)
          (text-mode . rainbow-delimiters-mode)))
 
+(use-package tree-sitter-langs :ensure t)
+
+(use-package tree-sitter
+  :ensure t
+  :after tree-sitter-langs
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
 (use-package whitespace
   :init
   (setq prelude-whitespace nil)
-  (setq whitespace-line-column 80)
+  (setq whitespace-line-column 100)
   ;; Highlight trailing whitespace
   (setq whitespace-style
         ;; There's a bug in empty where the face doesn't go away after
@@ -74,3 +83,5 @@
 
 ;; Decode ANSI color escape sequences for .log files
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
+(set-face-attribute 'default nil :height 70)
