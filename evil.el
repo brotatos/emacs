@@ -26,7 +26,7 @@
 
 (use-package evil-leader
   :ensure t
-  :after evil-collection
+  :after (evil-collection default-text-scale)
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
@@ -34,10 +34,14 @@
    "gb" 'magit-blame
    "t" 'air-org-set-tags
    "p" 'org-publish-all
-   "q" 'projectile-find-file
-   "Q" 'treemacs
+   "f" 'projectile-find-file
+   "F" 'treemacs
    "]" 'ggtags-find-tag-dwim
-   "l" lsp-command-map)
+   "l" lsp-command-map
+   "+" 'default-text-scale-increase
+   "-" 'default-text-scale-decrease
+   "0" 'default-text-scale-reset
+   )
   (global-evil-leader-mode))
 
 (use-package evil-org

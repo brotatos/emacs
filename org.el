@@ -1,3 +1,4 @@
+
 (use-package org-bullets
   :ensure t
   :config
@@ -16,6 +17,7 @@
         org-journal-enable-cache t))
 
 (with-eval-after-load 'org
+  (setq org-startup-indented t)
   (setq org-agenda-files (directory-files-recursively "~/noir" ".*\.org"))
 
   (setq auto-indent-start-org-indent t
@@ -94,4 +96,5 @@
            (new (if (> (length new-tags) 1) (concat " :" new-tags ":")
                   nil)))
       (air--org-swap-tags new)))
+
   )

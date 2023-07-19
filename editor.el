@@ -76,6 +76,20 @@
   :config
   (load-theme 'jbeans t))
 
+(use-package default-text-scale
+  :ensure t)
+
+(use-package simpleclip
+  :ensure t
+  :bind
+  ("s-c" . simpleclip-copy)
+  ("s-x" . simpleclip-cut)
+  ("s-v" . simpleclip-paste))
+
+(use-package hl-todo
+  :hook
+  (after-init . global-hl-todo-mode))
+
 ;; M-x display-ansi-colors to explicitly decode ANSI color escape sequences
 (defun display-ansi-colors ()
   (interactive)
@@ -84,4 +98,8 @@
 ;; Decode ANSI color escape sequences for .log files
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
 
-(set-face-attribute 'default nil :height 70)
+(set-face-attribute 'default nil :height 100 :font "JetBrains Mono NL Nerd Font")
+
+; set transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 95))
+(add-to-list 'default-frame-alist '(alpha 95 95))

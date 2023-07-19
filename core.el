@@ -26,13 +26,6 @@
 
 (add-hook 'prog-mode-hook 'comment-auto-fill)
 
-;; Disable linum-mode everywhere.
-;(defun disable-line-num()
-;  (linum-mode 0))
-;
-;(add-hook 'prog-mode-hook 'disable-line-num)
-;(add-hook 'text-mode-hook 'disable-line-num)
-
 (advice-add 'linum-mode :override 'global-display-line-numbers-mode)
 
 (global-set-key (kbd "C-c l") 'hs-show-block)
