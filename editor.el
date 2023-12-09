@@ -10,8 +10,8 @@
 ;; hide welcome screen
 (setq inhibit-splash-screen t)
 
-;; Line numbers
-(global-linum-mode t)
+;; Show line numbers
+(global-display-line-numbers-mode t)
 
 ;; Don't show top menu bar
 (menu-bar-mode -1)
